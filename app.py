@@ -417,4 +417,4 @@ def exporta_datos_excel(_, datos):
 
 # ejecución de la aplicación
 if __name__ == '__main__':
-    app.run_server(debug=True, port=8050)
+    app.run_server()
