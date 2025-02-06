@@ -313,7 +313,7 @@ def exporta_datos(datos):
     output = BytesIO()
     (
         pl.DataFrame(datos)
-        .select([pl.col(pl.String)]+[str(i) for i in range(2010, 2025)])
+        .select([pl.col(pl.String)]+[str(i) for i in range(2010, 2024)])
         .write_excel(workbook=output, autofilter=False)
     )
     return output.getvalue()
