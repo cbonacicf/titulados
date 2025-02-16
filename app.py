@@ -412,7 +412,7 @@ def modifica_seleccion(tipo, genero, nivel, region, area, stem, var_local, tipo_
 )
 def exporta_datos_excel(_, datos):
     df = exporta_datos(datos)
-    return dcc.send_bytes(df, 'datos_titulados_v2.xlsx')
+    return dcc.send_bytes(df, 'datos_titulados.xlsx')
 
 
 # ejecución de la aplicación
