@@ -244,8 +244,8 @@ def crea_criterio(tipo, genero, nivel, region, area, stem):
             dic_retorna[item] = dic[item]
     return dic_retorna
 
-fmto = {'function': "d3.format('(,.0f')(params.value)"}
-
+# fmto = {'function': "d3.format('(,.0f')(params.value)"}
+fmto = {"function": "d3.format(',.0f')(params.value).replace(/,/g, '.')"}
 
 def crea_column_defs(variable):
     return [
