@@ -3,6 +3,5 @@ __pycache__
 .DS_Store
 .env
 .python-version
-untitled.sublime-workspace
-untitled.sublime-project
-.python-version
+app_titulados.sublime-workspace
+app_titulados.sublime-project

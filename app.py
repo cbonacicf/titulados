@@ -13,7 +13,7 @@ mpl.use('agg')
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
-import dash
+# import dash
 from dash import dcc
 import dash_ag_grid as dag
 import dash_bootstrap_components as dbc
@@ -28,16 +28,11 @@ for k, v in categorias.items():
 
 # temporal
 del map_tipo['U. CRUCH']
-del map_tipo_inv[3]
 del map_tipo['U. Privadas']
-del map_tipo_inv[4]
 
 del map_nivel['Carreras Técnicas']
-del map_nivel_inv[1]
 del map_nivel['Carreras Profesionales']
-del map_nivel_inv[2]
-del map_nivel['Postgrado']
-del map_nivel_inv[6]
+del map_nivel['Posgrado']
 
 titul = pl.scan_parquet('./data/titulados.parquet')
 
@@ -47,19 +42,20 @@ with open('./data/colores_titul.pkl', 'rb') as f:
 
 # ### Funciones
 
+inv = lambda dic: {v: k for k, v in dic.items()}
 
 def base_datos(criterio, variable):
-    mapa = eval(f'map_{variable}_inv')
-    dtype = pl.Enum(list(eval(f'map_{variable}.keys()')))
+    mapa = eval(f'inv(map_{variable})')
+    tipo = pl.Enum(list(mapa.values()))
     titul_loc = titul
     if criterio:
         titul_loc = titul.filter(**criterio)
     return (
-        titul_loc 
+        titul_loc
         .collect()
         .pivot(index=variable, on='ano', values='titulados', aggregate_function='sum')
         .with_columns(
-            pl.col(variable).replace_strict(mapa, return_dtype=dtype)
+            pl.col(variable).replace_strict(mapa, return_dtype=tipo)
         )
         .sort(variable)
     )
@@ -195,7 +191,7 @@ boton_radio = dcc.RadioItems(
     style = {'textAlign': 'center'},
     labelStyle = {'display': 'inline-block', 'fontSize': '14px', 'fontWeight': 'normal'},
     inputStyle = {'marginRight': '5px', 'marginLeft': '20px'},
-),    
+),
 
 op_btn_radio2 = crea_opciones({'Líneas': 0, 'Áreas apiladas': 1})
 
@@ -206,7 +202,7 @@ boton_radio2 = dcc.RadioItems(
     style = {'textAlign': 'center'},
     labelStyle = {'display': 'inline-block', 'fontSize': '14px', 'fontWeight': 'normal'},
     inputStyle = {'marginRight': '5px', 'marginLeft': '20px'},
-),    
+),
 
 
 def nucleo():
@@ -268,6 +264,7 @@ def crea_column_defs(variable):
         {'field': '2021', 'width': 100, 'type': 'numericColumn', 'valueFormatter': fmto},
         {'field': '2022', 'width': 100, 'type': 'numericColumn', 'valueFormatter': fmto},
         {'field': '2023', 'width': 100, 'type': 'numericColumn', 'valueFormatter': fmto},
+        {'field': '2024', 'width': 100, 'type': 'numericColumn', 'valueFormatter': fmto},
     ]
 
 # tabla de datos
@@ -285,7 +282,7 @@ def tabla_datos(criterio, variable):
     return dag.AgGrid(
         id='tabla-datos',
         rowData=row_data,
-        defaultColDef={'resizable': True},    
+        defaultColDef={'resizable': True},
         columnDefs=crea_column_defs(variable),
         dashGridOptions = {
             'headerHeight': 40,
@@ -313,7 +310,7 @@ def exporta_datos(datos):
     output = BytesIO()
     (
         pl.DataFrame(datos)
-        .select([pl.col(pl.String)]+[str(i) for i in range(2010, 2024)])
+        .select([pl.col(pl.String)]+[str(i) for i in range(2010, 2025)])
         .write_excel(workbook=output, autofilter=False)
     )
     return output.getvalue()
@@ -417,4 +414,4 @@ def exporta_datos_excel(_, datos):
 
 # ejecución de la aplicación
 if __name__ == '__main__':
-    app.run_server()
+    app.run()
