@@ -668,4 +668,4 @@ def exporta_datos_excel(_, datos, trans, param):
 
 # ejecución de la aplicación
 if __name__ == '__main__':
-    app.run(debug=True, port=8055)
+    app.run() #  debug=True, port=8055)
