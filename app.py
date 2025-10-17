@@ -255,7 +255,7 @@ boton_radio2 = dcc.RadioItems(
     inputStyle = {'marginRight': '5px', 'marginLeft': '20px'},
 ),
 
-op_btn_radio_ano = crea_opciones({str(k): k for k in list(range(2010, 2026))})
+op_btn_radio_ano = crea_opciones({str(k): k for k in list(range(2010, 2025))})
 
 boton_radio_anos = html.Div([
     html.P("Seleccione el año de referencia:", style={'margin-left': '20px', 'margin-bottom': '0'}),
