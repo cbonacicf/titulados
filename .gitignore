@@ -5,3 +5,4 @@ __pycache__
 .python-version
 app_titulados.sublime-workspace
 app_titulados.sublime-project
+gunicorn.conf.py

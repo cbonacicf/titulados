@@ -8,3 +8,4 @@ dash_bootstrap_components
 dash_extensions
 XlsxWriter
 matplotlib
+gunicorn
