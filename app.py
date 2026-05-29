@@ -255,7 +255,7 @@ boton_radio2 = dcc.RadioItems(
     inputStyle = {'marginRight': '5px', 'marginLeft': '20px'},
 ),
 
-op_btn_radio_ano = crea_opciones({str(k): k for k in list(range(2010, 2025))})
+op_btn_radio_ano = crea_opciones({str(k): k for k in list(range(2010, 2026))})
 
 boton_radio_anos = html.Div([
     html.P("Seleccione el año de referencia:", style={'margin-left': '20px', 'margin-bottom': '0'}),
@@ -339,6 +339,7 @@ def crea_column_defs(variable):
         {'field': '2022', 'width': 100, 'type': 'numericColumn', 'valueFormatter': fn_fmto(0)},
         {'field': '2023', 'width': 100, 'type': 'numericColumn', 'valueFormatter': fn_fmto(0)},
         {'field': '2024', 'width': 100, 'type': 'numericColumn', 'valueFormatter': fn_fmto(0)},
+        {'field': '2025', 'width': 100, 'type': 'numericColumn', 'valueFormatter': fn_fmto(0)},
     ]
 
 # tabla de datos
@@ -437,7 +438,7 @@ def exporta_datos(datos, trans, param):
 
     df = (
         pl.DataFrame(datos)
-        .select([pl.col(pl.String)]+[str(i) for i in range(2010, 2025)])
+        .select([pl.col(pl.String)]+[str(i) for i in range(2010, 2026)])
     )
 
     dt = Datos(df)

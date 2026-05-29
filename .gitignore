@@ -6,3 +6,4 @@ __pycache__
 app_titulados.sublime-workspace
 app_titulados.sublime-project
 gunicorn.conf.py
+./data/titulados_bk.parquet
