@@ -302,7 +302,7 @@ encabezado_tabla = dbc.Col([
     dbc.Row(html.H3('Tabla', style={'textAlign': 'center', 'marginTop': -10, 'marginBottom': 20}))
 ], width=9)
 
-orden = ['tipo', 'genero', 'nivel', 'region', 'area', 'stem'] + [str(x) for x in range(2010, 2025)]
+orden = ['tipo', 'genero', 'nivel', 'region', 'area', 'stem'] + [str(x) for x in range(2010, 2026)]
 Crt = namedtuple('Crt', ['tipo', 'genero', 'nivel', 'region', 'area', 'stem'])
 
 variables = [tupla[1] for tupla in tuplas]
