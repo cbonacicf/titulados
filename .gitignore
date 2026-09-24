@@ -4,5 +4,5 @@ __pycache__
 .env
 .python-version
 .ropeproject
-./data/titulados_bk.parquet
-./data/titulados.parquet
+data/titulados_bk.parquet
+data/titulados.parquet
