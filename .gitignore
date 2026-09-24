@@ -3,7 +3,6 @@ __pycache__
 .DS_Store
 .env
 .python-version
-app_titulados.sublime-workspace
-app_titulados.sublime-project
-gunicorn.conf.py
+.ropeproject
 ./data/titulados_bk.parquet
+./data/titulados.parquet

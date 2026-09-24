@@ -29,7 +29,7 @@ with open('./data/categorias_titul.pkl', 'rb') as f:
 for k, v in categorias.items():
     exec(f'{k} = {v}')
 
-titul = pl.scan_parquet('./data/titulados.parquet')
+titul = pl.scan_parquet('./data/titulados_new.parquet')
 
 # ### Colores
 with open('./data/colores_titul.pkl', 'rb') as f:
